@@ -4,7 +4,55 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Simulador de Rochas Sedimentares</title>
-  <link rel="stylesheet" href="styles.css">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      background-color: #f4f4f9;
+      color: #333;
+      margin: 0;
+      padding: 0;
+    }
+
+    .container {
+      max-width: 600px;
+      margin: 50px auto;
+      padding: 20px;
+    }
+
+    h1 {
+      color: #2a9d8f;
+    }
+
+    .buttons button {
+      padding: 10px 20px;
+      margin: 10px;
+      border: none;
+      border-radius: 5px;
+      background-color: #264653;
+      color: #fff;
+      cursor: pointer;
+      font-size: 16px;
+    }
+
+    .buttons button:hover {
+      background-color: #2a9d8f;
+    }
+
+    .simulation {
+      margin-top: 20px;
+      padding: 20px;
+      border: 2px dashed #ccc;
+      border-radius: 10px;
+      background-color: #e9ecef;
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 10px;
+    }
+  </style>
 </head>
 <body>
   <div class="container">
@@ -19,6 +67,34 @@
       <p>Escolhe um agente para ver o resultado aqui.</p>
     </div>
   </div>
-  <script src="script.js"></script>
+
+  <script>
+    document.getElementById('water').addEventListener('click', () => {
+      simulate("Água", "A água desgasta as rochas e transporta partículas para rios e oceanos, onde se acumulam e formam camadas sedimentares.");
+    });
+
+    document.getElementById('wind').addEventListener('click', () => {
+      simulate("Vento", "O vento carrega partículas de areia e poeira para grandes distâncias, formando dunas e depósitos sedimentares.");
+    });
+
+    document.getElementById('livingBeings').addEventListener('click', () => {
+      simulate("Seres Vivos", "Os seres vivos, como corais e conchas, contribuem para a formação de rochas sedimentares orgânicas em ambientes marinhos.");
+    });
+
+    function simulate(agent, result) {
+      const simulationDiv = document.getElementById('simulation');
+      simulationDiv.innerHTML = `
+        <h2>Agente: ${agent}</h2>
+        <p>${result}</p>
+        <img src="${getImage(agent)}" alt="${agent}">
+      `;
+    }
+
+    function getImage(agent) {
+      if (agent === "Água") return "https://via.placeholder.com/400x200?text=Água+em+Ação";
+      if (agent === "Vento") return "https://via.placeholder.com/400x200?text=Vento+em+Ação";
+      if (agent === "Seres Vivos") return "https://via.placeholder.com/400x200?text=Vida+em+Ação";
+    }
+  </script>
 </body>
 </html>
